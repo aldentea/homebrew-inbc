@@ -8,18 +8,27 @@ class GnuBackgammon < Formula
 		depends_on "autoconf" => :build
 		depends_on "automake" => :build
 		depends_on "libtool" => :build
-		depends_on "gtk+3"
+		depends_on "bison" => :build
+		depends_on "readline" => :build
+		depends_on "pkg-config" => :build
 		depends_on "glib"
-		depends_on "gettext"
+		depends_on "gtk+"
+		depends_on 'gtkglext' => :recommended
+
 
 		livecheck do
 				url "https://ftp.gnu.org/gnu/gnubg/"
-				regexp(/href=.*?gnubg-release[._-]v?(\d+(?:\.\d+)+)-sources\.t/i)
+				regex(/href=.*?gnubg-release[._-]v?(\d+(?:\.\d+)+)-sources\.t/i)
 		end
 		
 		def install
-				system "./configure", "--prefix=#{prefix}"
-				system "make", "install"
+			ENV["PATH"] = "#{Formula["bison"].opt_bin}:#{ENV["PATH"]}"
+			ENV["LDFLAGS"] = "-L#{Formula["readline"].opt_lib}"
+			ENV["CPPFLAGS"] = "-I#{Formula["readline"].opt_include}"
+			system "./autogen.sh"
+			system "./configure", *std_configure_args
+			system "make"
+			system "make", "install"
 		end
     
 		test do
