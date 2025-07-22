@@ -32,7 +32,7 @@ class GnuBackgammon < Formula
 		end
 
 		bottle do
-			root_url "https://raw.githubusercontent.com/aldentea/homebrew-inbc/refs/heads/main/bottles"
+			root_url "https://github.com/aldentea/homebrew-inbc/raw/dc6819dcaa775fd3935de7a5feb77c81d22e827d/bottles"
 			rebuild 1
 			sha256 arm64_sequoia: "8e987b950fc3c05bd0cfa1fe5c6501927b633e6d8c50a1caa3b5a09f9958be8a"
 		end
