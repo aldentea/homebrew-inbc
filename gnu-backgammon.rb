@@ -17,8 +17,8 @@ class GnuBackgammon < Formula
 
 
 		livecheck do
-				url "https://ftp.gnu.org/gnu/gnubg/"
-				regex(/href=.*?gnubg-release[._-]v?(\d+(?:\.\d+)+)-sources\.t/i)
+			url "https://ftp.gnu.org/gnu/gnubg/"
+			regex(/href=.*?gnubg-release[._-]v?(\d+(?:\.\d+)+)-sources\.t/i)
 		end
 		
 		def install
@@ -30,8 +30,14 @@ class GnuBackgammon < Formula
 			system "make"
 			system "make", "install"
 		end
-    
+
+		bottle do
+			root_url "https://raw.githubusercontent.com/aldentea/homebrew-inbc/refs/heads/main/bottles"
+			rebuild 1
+			sha256 arm64_sequoia: "8e987b950fc3c05bd0cfa1fe5c6501927b633e6d8c50a1caa3b5a09f9958be8a"
+		end
+
 		test do
-				system "#{bin}/gnubg", "--version"
+			system "#{bin}/gnubg", "--version"
 		end
 end
