@@ -5,6 +5,12 @@ class GnuBackgammon < Formula
 		sha256 "6f7d969b13cfff786fba90ff8cc5e5d564b97f4f0aa69afe4f3838f18c445979"
 		license "GPL-3.0-or-later"
 
+		bottle do
+			root_url "https://github.com/aldentea/homebrew-inbc/releases/download/gnu-backgammon-1.08.003"
+			rebuild 1
+			sha256 arm64_sequoia: "f1614686cc50ad700174dec0f89faca3c8716c5b0d38b61531aa077633811b1c"
+		end
+
 		depends_on "autoconf" => :build
 		depends_on "automake" => :build
 		depends_on "libtool" => :build
